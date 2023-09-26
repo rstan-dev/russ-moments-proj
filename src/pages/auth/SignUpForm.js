@@ -15,8 +15,12 @@ const SignUpForm = () => {
     })
 const {username, password1, password2} = signUpData;
 
-
-
+const handleChange = (event) => {
+    setSignUpData({
+        ...signUpData,
+        [event.target.name]: event.target.value,
+    })
+}
 
   return (
     <Row className={styles.Row}>
@@ -32,10 +36,10 @@ const {username, password1, password2} = signUpData;
                     type="text"
                     placeholder="Enter username"
                     name="username"
-                    value={username} />
-
+                    value={username}
+                    onChange={handleChange}
+                    />
             </Form.Group>
-
             <Form.Group controlId="password1">
                 <Form.Label className="d-none">Password</Form.Label>
                 <Form.Control
@@ -43,7 +47,9 @@ const {username, password1, password2} = signUpData;
                     type="password"
                     placeholder="Password"
                     name="password1"
-                    value={password1} />
+                    value={password1}
+                    onChange={handleChange}
+                    />
             </Form.Group>
             <Form.Group controlId="password2">
                 <Form.Label className="d-none">Confirm Password</Form.Label>
@@ -52,7 +58,9 @@ const {username, password1, password2} = signUpData;
                     type="password"
                     placeholder="Confirm Password"
                     name="password2"
-                    value={password2} />
+                    value={password2}
+                    onChange={handleChange}
+                    />
             </Form.Group>
             <Button className={`${btnStyles.Button} ${btnStyles.Wide} ${btnStyles.Bright}`} type="submit">
                 Sign up
