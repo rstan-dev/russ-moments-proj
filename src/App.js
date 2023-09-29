@@ -20,7 +20,8 @@ function App() {
           < NavBar />
           <Container className={styles.Main}>
             <Switch>
-                <Route
+            <Route exact path="/" render={() => <h1>Home page</h1>} />
+                {/* <Route
                   exact
                   path="/"
                   render={() => (
@@ -50,7 +51,7 @@ function App() {
                   filter={`likes__owner__profile=${profile_id}&ordering=-likes__created_at&`}
                   />
                   )}
-                />
+                /> */}
 
                 <Route exact path="/signin" render={() => <SignInForm /> } />
                 <Route exact path="/signup" render={() => <SignUpForm /> } />
