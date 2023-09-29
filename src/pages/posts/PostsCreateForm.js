@@ -14,8 +14,22 @@ import appStyles from "../../App.module.css";
 import btnStyles from "../../styles/Button.module.css";
 
 function PostCreateForm() {
+  const [postData, setPostData] = useState({
+    title: '',
+    content: '',
+    image: '',
+  });
+
+  const {title, content, image} = postData
 
   const [errors, setErrors] = useState({});
+
+  const handleChange = (event) => {
+    setPostData({
+        ...postData,
+        [event.target.name]: event.target.value,
+    });
+  };
 
 
   const textFields = (
@@ -26,6 +40,8 @@ function PostCreateForm() {
             <Form.Control
              type="text"
              name="title"
+             value={title}
+             onChange={handleChange}
             />
         </Form.Group>
         <Form.Group controlId="content">
@@ -34,6 +50,8 @@ function PostCreateForm() {
              as="textarea"
              name="content"
              rows={6}
+             value={content}
+             onChange={handleChange}
             />
         </Form.Group>
 
@@ -67,6 +85,7 @@ function PostCreateForm() {
                 >
                   <Asset src={Upload} message="Click or tap to upload an image"/>
                 </Form.Label>
+            
 
             </Form.Group>
             <div className="d-md-none">{textFields}</div>
