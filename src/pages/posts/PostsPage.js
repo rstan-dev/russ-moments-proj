@@ -8,6 +8,7 @@ import { useLocation } from "react-router"
 import appStyles from "../../App.module.css";
 import styles from "../../styles/PostsPage.module.css";
 import { axiosReq } from "../../api/axiosDefaults";
+import Post from "./Post";
 
 function PostsPage({message, filter = ""}) {
     const [posts, setPosts] = useState({ results: []});
@@ -32,7 +33,19 @@ function PostsPage({message, filter = ""}) {
         <Row className="h-100">
         <Col className="py-2 p-0 p-lg-2" lg={8}>
             <p>Popular profiles mobile</p>
-            <p>List of posts here</p>
+            {hasLoaded ? (
+                <>
+                {posts.results.length ? (
+                    posts.results.map(post => (
+                        <Post key={post.id} {...post} setPosts={setPosts} />
+                ))
+                ) : (
+                    console.log("show no results asset")
+                )}
+                </>
+            ) : (
+                console.log("show loading spinner")
+            )}
         </Col>
         <Col md={4} className="d-none d-lg-block p-0 p-lg-2">
             <p>Popular profiles for desktop</p>
