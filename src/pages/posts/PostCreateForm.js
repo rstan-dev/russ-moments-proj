@@ -14,6 +14,7 @@ import Asset from "../../components/Asset";
 import styles from "../../styles/PostCreateEditForm.module.css";
 import appStyles from "../../App.module.css";
 import btnStyles from "../../styles/Button.module.css";
+
 import { axiosReq } from "../../api/axiosDefaults";
 import { useHistory } from "react-router";
 
@@ -24,10 +25,10 @@ function PostCreateForm() {
     image: '',
   });
 
-  const {title, content, image} = postData
+  const {title, content, image} = postData;
 
-  const imageInput = useRef(null)
-  const history = useHistory()
+  const imageInput = useRef(null);
+  const history = useHistory();
 
   const [errors, setErrors] = useState({});
 
@@ -44,9 +45,9 @@ function PostCreateForm() {
         setPostData({
             ...postData,
             image: URL.createObjectURL(event.target.files[0])
-        })
+        });
     }
-  }
+  };
 
   const handleSubmit = async (event) => {
     event.preventDefault()
@@ -59,13 +60,13 @@ function PostCreateForm() {
     try {
         const {data} = await axiosReq.post('/posts/', formData)
         history.push(`/posts/${data.id}`)
-    } catch(err){
-        console.log(err)
-        if (err.response?.status !== 401){
-            setErrors(err.response?.data)
+    } catch (err) {
+        console.log(err);
+        if (err.response?.status !== 401) {
+            setErrors(err.response?.data);
         }
     }
-  }
+  };
 
   const textFields = (
     <div className="text-center">
@@ -82,7 +83,7 @@ function PostCreateForm() {
         {errors?.title?.map((message, idx) => (
                 <Alert variant="warning" key={idx}>
                     {message}
-                    </Alert>
+                </Alert>
             ))}
         <Form.Group controlId="content">
             <Form.Label >Content</Form.Label>
@@ -97,7 +98,7 @@ function PostCreateForm() {
         {errors?.content?.map((message, idx) => (
                 <Alert variant="warning" key={idx}>
                     {message}
-                    </Alert>
+                  </Alert>
             ))}
         <Button
             className={`${btnStyles.Button} ${btnStyles.Blue}`}

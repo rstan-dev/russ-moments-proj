@@ -27,7 +27,7 @@ function PostsPage({message, filter = ""}) {
                 const {data} = await axiosReq.get(`/posts/?${filter}search=${query}`);
                 setPosts(data);
                 setHasLoaded(true);
-            } catch(err) {
+            } catch (err) {
                 console.log(err);
             }
         };
@@ -37,7 +37,7 @@ function PostsPage({message, filter = ""}) {
         }, 1000)
         return () => {
             clearTimeout(timer)
-        }
+        };
     }, [filter, query, pathname]);
 
     return (

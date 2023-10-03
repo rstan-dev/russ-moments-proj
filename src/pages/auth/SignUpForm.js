@@ -22,16 +22,16 @@ const handleChange = (event) => {
     setSignUpData({
         ...signUpData,
         [event.target.name]: event.target.value,
-    })
-}
+    });
+};
 
 const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-        await axios.post('/dj-rest-auth/registration/', signUpData)
-        history.push('/signin')
+        await axios.post('/dj-rest-auth/registration/', signUpData);
+        history.push('/signin');
     } catch (err) {
-        setErrors(err.response?.data)
+        setErrors(err.response?.data);
     }
 };
 

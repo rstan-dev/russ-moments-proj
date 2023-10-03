@@ -21,12 +21,12 @@ function PostPage() {
             ]);
             setPost({results: [post]});
             console.log(post)
-        } catch(err) {
-            console.log(err)
+        } catch (err) {
+            console.log(err);
         }
     };
 
-    handleMount()
+    handleMount();
   }, [id]);
 
 
